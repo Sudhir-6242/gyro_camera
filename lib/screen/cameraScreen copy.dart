@@ -86,37 +86,66 @@ class _CameraScreenState extends State<CameraScreen> {
   void initState() {
     super.initState();
     onSelectedCamera(cameras[1]);
-    _streamSubscriptions.add(
-      accelerometerEvents.listen(
-        (AccelerometerEvent event) {
-          setState(() {
-            _accelerometerValues = <double>[event.x, event.y, event.z];
-          });
-        },
-      ),
-    );
-    _streamSubscriptions.add(
-      gyroscopeEvents.listen(
-        (GyroscopeEvent event) {
-          setState(() {
-            _gyroscopeValues = <double>[event.x, event.y, event.z];
-          });
-        },
-      ),
-    );
-    _streamSubscriptions.add(
-      userAccelerometerEvents.listen(
-        (UserAccelerometerEvent event) {
-          setState(() {
-            _userAccelerometerValues = <double>[event.x, event.y, event.z];
-          });
-        },
-      ),
-    );
+    // _streamSubscriptions.add(
+    //   accelerometerEvents.listen(
+    //     (AccelerometerEvent event) {
+    //       setState(() {
+    //         _accelerometerValues = <double>[event.x, event.y, event.z];
+    //       });
+    //     },
+    //   ),
+    // );
+    // _streamSubscriptions.add(
+    //   gyroscopeEvents.listen(
+    //     (GyroscopeEvent event) {
+    //       setState(() {
+    //         _gyroscopeValues = <double>[event.x, event.y, event.z];
+    //       });
+    //     },
+    //   ),
+    // );
+    // _streamSubscriptions.add(
+    //   userAccelerometerEvents.listen(
+    //     (UserAccelerometerEvent event) {
+    //       setState(() {
+    //         _userAccelerometerValues = <double>[event.x, event.y, event.z];
+    //       });
+    //     },
+    //   ),
+    // );
   }
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      _streamSubscriptions.add(
+        accelerometerEvents.listen(
+          (AccelerometerEvent event) {
+            setState(() {
+              _accelerometerValues = <double>[event.x, event.y, event.z];
+            });
+          },
+        ),
+      );
+      _streamSubscriptions.add(
+        gyroscopeEvents.listen(
+          (GyroscopeEvent event) {
+            setState(() {
+              _gyroscopeValues = <double>[event.x, event.y, event.z];
+            });
+          },
+        ),
+      );
+      _streamSubscriptions.add(
+        userAccelerometerEvents.listen(
+          (UserAccelerometerEvent event) {
+            setState(() {
+              _userAccelerometerValues = <double>[event.x, event.y, event.z];
+            });
+          },
+        ),
+      );
+    });
     final accelerometer =
         _accelerometerValues?.map((double v) => v.toStringAsFixed(1)).toList();
     return Scaffold(
