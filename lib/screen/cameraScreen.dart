@@ -223,9 +223,7 @@ class _CameraScreenState extends State<CameraScreen> {
                       Transform.rotate(
                         angle: MediaQuery.of(context).orientation ==
                                 Orientation.landscape
-                            ? (angle2.isNegative
-                                ? -angle2 * 0.010
-                                : angle2 * 0.010) //landscape angle of rotation
+                            ? -angle2 * 0.010 //landscape angle of rotation
                             : (angle1.isNegative
                                 ? angle1 * 0.010
                                 : 0.010 * angle1), //portrait angle of rotation
